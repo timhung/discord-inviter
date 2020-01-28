@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='request.css')}}">{% endblock %}
+{% block title %}Request an invite{% endblock %}
+{% block content %}
+<h1>Welcome</h1>
+<p class="intro">To receive a Discord invite, please enter your Reddit username and select the role which best describes
+    you.</p>
+<form method="POST" id="request-invite">
+    {{ form.csrf_token }}
+    {{ form.username(placeholder='Reddit username') }}
+    <br>
+    <ul>
+        {% for subfield in form.role %}
+        <li>
+            <label>
+                {{ subfield }}
+                {{ subfield.label(data_tip='I\'m a ' + subfield.data)}}
+            </label>
+        </li>
+        {% endfor %}
+    </ul>
+    {{ form.captcha }}
+    <input type="submit" id='captcha-submit' value="Submit Request">
+</form>
+<script>
+    function onSubmitCallback(token) {
+        document.getElementById("request-invite").submit();
+    }
+</script>
+{% endblock %}

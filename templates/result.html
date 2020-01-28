@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Your Discord invite{% endblock %}
+{% block content %}
+<h1>Congratulations</h1>
+<div id="invite">Your Discord invite is: <a href="https://discord.gg/{{ discord_invite }}">https://discord.gg/{{
+    discord_invite }}</a></div>
+<div id="timeout">Please use the above invite within {{ invite_timeout }} seconds.</div>
+{% endblock %}}
